@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: django_backend
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app
+    command: python manage.py runserver 0.0.0.0:8000
+
+  frontend:
+    build:
+      context: ./frontend/aip
+      dockerfile: Dockerfile.dev
+    container_name: angular_frontend
+    ports:
+      - 4200:4200
+    volumes:
+      - ./frontend/aip:/app
+      - /app/node_modules
+    # Change this line
+    command: npx ng serve --host 0.0.0.0 --disable-host-check
