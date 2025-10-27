@@ -2,13 +2,32 @@ version: '3.8'
 
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: django_backend
+    environment:
+      - DB_HOST=db
+      - DB_NAME=mydb
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
     ports:
       - 8000:8000
     volumes:
       - ./backend:/app
     command: python manage.py runserver 0.0.0.0:8000
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   frontend:
     build:
@@ -22,3 +41,6 @@ services:
       - /app/node_modules
     # Change this line
     command: npx ng serve --host 0.0.0.0 --disable-host-check
+
+volumes:
+  postgres_data:
