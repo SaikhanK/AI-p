@@ -1,0 +1,22 @@
+<html>
+<h1>test123</h1>
+
+<body>
+    <div class="product-list">
+        <div class="product-card" *ngFor="let product of products">
+            <img *ngIf="product.images.length > 0" [src]="product.images[0].image" class="product-image"
+                alt="{{ product.title }}" />
+
+            <h2 class="product-title">
+                {{ product.title }}
+            </h2>
+
+            <p class="product-price">
+                {{ product.price | number:'1.2-2' }}€
+            </p>
+            <a [routerLink]="['/productdetail', product.id]">View</a>
+        </div>
+    </div>
+</body>
+
+</html>

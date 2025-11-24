@@ -1,0 +1,29 @@
+<div *ngIf="product" class="product-detail-container">
+
+    <a routerLink="/" class="back-btn">← Back to Products</a>
+
+    <div class="product-content">
+
+        <div class="product-images">
+            <img *ngIf="product.images?.length > 0" [src]="product.images[0].image" class="main-image"
+                alt="{{ product.title }}">
+
+            <div class="thumbnail-container" *ngIf="product.images?.length > 1">
+                <img *ngFor="let img of product.images; let i = index" [src]="img.image" class="thumbnail"
+                    [class.active]="i === 0">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <h1 class="product-title">{{ product.title }}</h1>
+            <p class="product-price">{{ product.price | number:'1.2-2' }} €</p>
+
+            <p class="product-description">
+                Description-----------------------------------
+            </p>
+
+            <button class="buy-btn">Add to Cart</button>
+        </div>
+
+    </div>
+</div>

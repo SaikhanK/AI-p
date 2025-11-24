@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<header class="navbar">
+  <div class="logo">
+    <a routerLink="/">MyApp</a>
+  </div>
+  <nav class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/product" routerLinkActive="active">Products</a>
+  </nav>
+</header>
+
+<body>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+</body>
+
+<footer>
+  © 2025 Meine Anwendung – Erstellt mit ❤️ in Angular & Django
+</footer>
+
+</html>

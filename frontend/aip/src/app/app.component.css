@@ -1,0 +1,41 @@
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0d6efd;
+    color: white;
+    padding: 0.5rem 2rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Logo styling */
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Navigation links */
+.nav-links a {
+    margin-left: 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Active route link */
+.nav-links a.active {
+    border-bottom: 2px solid #ffc107;
+}
+
+/* Hover effect */
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* Main content spacing */
+main {
+    padding: 2rem;
+}
