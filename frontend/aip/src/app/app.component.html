@@ -5,17 +5,45 @@
   <div class="logo">
     <a routerLink="/">MyApp</a>
   </div>
+
   <nav class="nav-links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/product" routerLinkActive="active">Products</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      Home
+    </a>
+    <a routerLink="/product" routerLinkActive="active">
+      Products
+    </a>
   </nav>
 </header>
 
 <body>
 
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+  <div class="layout-container">
+
+    <!-- Sidebar links -->
+    <aside class="sidebar">
+      <div class="filter-container">
+        <h3>Filter</h3>
+    
+        @for (f of productFilters; track f.key) {
+          <mat-form-field appearance="outline">
+            <mat-label>{{ f.key }}</mat-label>
+            <mat-select (selectionChange)="onFilterSelect(f.key, $event.value)">
+              @for (choice of f.choices; track choice) {
+                <mat-option [value]="choice">{{ choice }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        }
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
 
 </body>
 

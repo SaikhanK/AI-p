@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Product, productImage
+from .models import Product, ProductImage
 from .serializers import ProductSerializer, ProductImageSerializer
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -7,5 +7,5 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
 
 class ProductImageViewSet(viewsets.ModelViewSet):
-    queryset = productImage.objects.all()
+    queryset = ProductImage.objects.all()
     serializer_class = ProductImageSerializer

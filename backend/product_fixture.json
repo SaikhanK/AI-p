@@ -1,0 +1,279 @@
+[
+    {
+      "model": "product.category",
+      "pk": 1,
+      "fields": {
+        "name": "Smartphones",
+        "slug": "smartphones"
+      }
+    },
+    {
+      "model": "product.category",
+      "pk": 2,
+      "fields": {
+        "name": "Laptops",
+        "slug": "laptops"
+      }
+    },
+    {
+      "model": "product.category",
+      "pk": 3,
+      "fields": {
+        "name": "Kopfhörer",
+        "slug": "kopfhoerer"
+      }
+    },
+  
+    {
+      "model": "product.product",
+      "pk": 1,
+      "fields": {
+        "title": "iPhone 15 Pro",
+        "price": 1199.99,
+        "category": 1
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 2,
+      "fields": {
+        "title": "Samsung Galaxy S24",
+        "price": 999.99,
+        "category": 1
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 3,
+      "fields": {
+        "title": "MacBook Air M3",
+        "price": 1499.00,
+        "category": 2
+      }
+    },
+    {
+      "model": "product.product",
+      "pk": 4,
+      "fields": {
+        "title": "Sony WH-1000XM5",
+        "price": 349.99,
+        "category": 3
+      }
+    },
+  
+    {
+      "model": "product.attribute",
+      "pk": 1,
+      "fields": {
+        "name": "Brand"
+      }
+    },
+    {
+      "model": "product.attribute",
+      "pk": 2,
+      "fields": {
+        "name": "Color"
+      }
+    },
+    {
+      "model": "product.attribute",
+      "pk": 3,
+      "fields": {
+        "name": "Storage"
+      }
+    },
+    {
+      "model": "product.attribute",
+      "pk": 4,
+      "fields": {
+        "name": "RAM"
+      }
+    },
+  
+    {
+      "model": "product.attributevalue",
+      "pk": 1,
+      "fields": {
+        "attribute": 1,
+        "value": "Apple"
+      }
+    },
+    {
+      "model": "product.attributevalue",
+      "pk": 2,
+      "fields": {
+        "attribute": 1,
+        "value": "Samsung"
+      }
+    },
+    {
+      "model": "product.attributevalue",
+      "pk": 3,
+      "fields": {
+        "attribute": 1,
+        "value": "Sony"
+      }
+    },
+  
+    {
+      "model": "product.attributevalue",
+      "pk": 4,
+      "fields": {
+        "attribute": 2,
+        "value": "Black"
+      }
+    },
+    {
+      "model": "product.attributevalue",
+      "pk": 5,
+      "fields": {
+        "attribute": 2,
+        "value": "Silver"
+      }
+    },
+  
+    {
+      "model": "product.attributevalue",
+      "pk": 6,
+      "fields": {
+        "attribute": 3,
+        "value": "128GB"
+      }
+    },
+    {
+      "model": "product.attributevalue",
+      "pk": 7,
+      "fields": {
+        "attribute": 3,
+        "value": "256GB"
+      }
+    },
+    {
+      "model": "product.attributevalue",
+      "pk": 8,
+      "fields": {
+        "attribute": 3,
+        "value": "512GB"
+      }
+    },
+  
+    {
+      "model": "product.attributevalue",
+      "pk": 9,
+      "fields": {
+        "attribute": 4,
+        "value": "8GB"
+      }
+    },
+    {
+      "model": "product.attributevalue",
+      "pk": 10,
+      "fields": {
+        "attribute": 4,
+        "value": "16GB"
+      }
+    },
+  
+    {
+      "model": "product.productattribute",
+      "pk": 1,
+      "fields": {
+        "product": 1,
+        "attribute": 1,
+        "value": 1
+      }
+    },
+    {
+      "model": "product.productattribute",
+      "pk": 2,
+      "fields": {
+        "product": 1,
+        "attribute": 2,
+        "value": 4
+      }
+    },
+    {
+      "model": "product.productattribute",
+      "pk": 3,
+      "fields": {
+        "product": 1,
+        "attribute": 3,
+        "value": 7
+      }
+    },
+  
+    {
+      "model": "product.productattribute",
+      "pk": 4,
+      "fields": {
+        "product": 2,
+        "attribute": 1,
+        "value": 2
+      }
+    },
+    {
+      "model": "product.productattribute",
+      "pk": 5,
+      "fields": {
+        "product": 2,
+        "attribute": 2,
+        "value": 4
+      }
+    },
+    {
+      "model": "product.productattribute",
+      "pk": 6,
+      "fields": {
+        "product": 2,
+        "attribute": 3,
+        "value": 6
+      }
+    },
+  
+    {
+      "model": "product.productattribute",
+      "pk": 7,
+      "fields": {
+        "product": 3,
+        "attribute": 1,
+        "value": 1
+      }
+    },
+    {
+      "model": "product.productattribute",
+      "pk": 8,
+      "fields": {
+        "product": 3,
+        "attribute": 2,
+        "value": 5
+      }
+    },
+    {
+      "model": "product.productattribute",
+      "pk": 9,
+      "fields": {
+        "product": 3,
+        "attribute": 4,
+        "value": 10
+      }
+    },
+  
+    {
+      "model": "product.productattribute",
+      "pk": 10,
+      "fields": {
+        "product": 4,
+        "attribute": 1,
+        "value": 3
+      }
+    },
+    {
+      "model": "product.productattribute",
+      "pk": 11,
+      "fields": {
+        "product": 4,
+        "attribute": 2,
+        "value": 4
+      }
+    }
+  ]

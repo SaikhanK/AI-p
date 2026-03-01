@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/Home/home.component';
-import { ProductComponent } from './pages/Product/product.component';
-import { ProductDetailComponent } from './pages/ProductDetail/productdetail.component';
+import { HomeComponent } from './presentation/pages/Home/home.component';
+import { ProductComponent } from './presentation/pages/Product/product.component';
+import { ProductDetailComponent } from './presentation/pages/ProductDetail/productdetail.component';
 
 
 export const routes: Routes = [

@@ -1,22 +1,6 @@
 version: '3.8'
 
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: django_backend
-    environment:
-      - DB_HOST=db
-      - DB_NAME=mydb
-      - DB_USER=myuser
-      - DB_PASSWORD=mypassword
-    ports:
-      - 8000:8000
-    volumes:
-      - ./backend:/app
-    command: python manage.py runserver 0.0.0.0:8000
-
   db:
     image: postgres:15
     container_name: postgres_db
@@ -29,11 +13,33 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: django_backend
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=mydb
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app
+    command: python manage.py runserver 0.0.0.0:8000
+
+
   frontend:
     build:
       context: ./frontend/aip
       dockerfile: Dockerfile
     container_name: angular_frontend
+    depends_on:
+      - backend
     ports:
       - 4200:4200
     volumes:

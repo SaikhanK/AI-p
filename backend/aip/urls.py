@@ -33,4 +33,5 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include("product.urls")),
+    path('api/', include("chatbot.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

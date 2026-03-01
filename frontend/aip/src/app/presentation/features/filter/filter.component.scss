@@ -1,0 +1,51 @@
+/* Gesamt Layout */
+.main-container {
+    display: flex;
+    height: 100vh;
+    background: #f5f7fa;
+  }
+  
+  /* Sidebar links */
+  .sidebar {
+    width: 280px;
+    padding: 16px;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  /* Content rechts */
+  .content {
+    flex: 1;
+    padding: 24px;
+    overflow: auto;
+  }
+  
+  /* Filter Card */
+  .filter-card {
+    padding: 16px;
+  }
+  
+  /* Full width helper */
+  .full-width {
+    width: 100%;
+  }
+  
+  /* Tabelle */
+  table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .main-container {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  }
