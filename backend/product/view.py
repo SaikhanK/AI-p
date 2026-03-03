@@ -10,13 +10,7 @@ import pandas as pd
 class ProductView(GenericViewSet):
 
     def getProducts(self, request: Request) -> Response:
-        data = QueryParameter.model_validate(request.query_params)
-        product = Product.objects.filter(
-            attributes__attribute__name="Color",
-            attributes__value__value="Black"
-        ).distinct()
-        df = pd.DataFrame(product)
-        raise ValueError(df)
+        data = QueryParameter.model_validate(dict(request.query_params.items()))
         return Response
 
 class ProductViewSet(viewsets.ModelViewSet):
