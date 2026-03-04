@@ -5,12 +5,14 @@ from rest_framework.response import Response
 from .models import Product, ProductImage
 from .serializers import ProductSerializer, ProductImageSerializer
 from .paramter import QueryParameter
+from .services.querying import generate_dataframe
 import pandas as pd
 
 class ProductView(GenericViewSet):
 
     def getProducts(self, request: Request) -> Response:
         data = QueryParameter.model_validate(dict(request.query_params.items()))
+        df = generate_dataframe(data)
         return Response
 
 class ProductViewSet(viewsets.ModelViewSet):
