@@ -4,7 +4,7 @@ import pandas as pd
 
 def generate_dataframe(data: QueryParameter)-> pd.DataFrame:
     query_set = get_query_set(data)
-    df = pd.DataFrame(query_set)
+    df = pd.DataFrame(query_set.values('id', 'title', 'price'))
     return df
 
 

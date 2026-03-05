@@ -6,12 +6,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 router = DefaultRouter()
-router.register(r"product", ProductViewSet, basename="products")
+#router.register(r"product", ProductViewSet, basename="products")
 router.register(r"image", ProductImageViewSet, basename="images")
 # router.register(r"test", TestViewSet.as_view(), basename="test_api")
 
 urlpatterns = [
     path('', include(router.urls)),
     path('test/', TestViewSet.as_view({'get': 'product_test'}), name="test_api"),
-    path('testa/', ProductView.as_view({'get': 'getProducts'}), name="product")
+    path('product/', ProductView.as_view({'get': 'getProducts'}), name="product")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

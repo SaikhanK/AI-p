@@ -14,16 +14,24 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     styleUrl: './product.component.css',
 })
 export class ProductComponent {
-    products: any[] = [];
+    
 
     constructor(private http: HttpClient) {
         this.getProducts();
     }
 
+    products: any[] = [];
+    categories: any[] = [];
+
     getProducts() {
-        this.http.get<any[]>('http://localhost:8000/api/product/')
+        this.http.get<any>('http://localhost:8000/api/product/')
             .subscribe({
-                next: data => this.products = data,
+                next: res => {
+                    this.products = res.data;
+                    this.categories = res.category;
+
+                    console.log(this.products);
+                },
                 error: err => console.error(err)
             });
     }
