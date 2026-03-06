@@ -11,6 +11,8 @@ import { combiendfilter } from './data-domain/filter.model';
 import { CommonModule } from '@angular/common'; // Für @for/ @if
 import { setFilter } from './business-domain/filter/store/actions/filter.actions';
 import { StoreState } from './data-domain/store.model';
+import { HttpClient } from '@angular/common/http';
+import { FilterComponent } from './presentation/features/filter/filter.component';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +27,7 @@ import { StoreState } from './data-domain/store.model';
     RouterLink,
     RouterLinkActive,
     ReactiveFormsModule,
+    FilterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -33,11 +36,5 @@ export class AppComponent{
   filterControl = new FormControl<string>('', { nonNullable: true });
 
   productFilters = combiendfilter['product']; 
-  constructor(private store: Store<StoreState>) {}
-
-  onFilterSelect(key: string, value: any) {
-    this.store.dispatch(setFilter({ key, value }));
-    console.log(`Store Update: ${key} = ${value}`);
-  }
-
+  constructor(private store: Store<StoreState>, private http: HttpClient) {}
 }

@@ -9,6 +9,7 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.Serializer):
     category = serializers.ListField(required=False)
+    brand = serializers.ListField(required=False)
     attribute = serializers.ListField(required=False)
     attribute_value = serializers.DictField(required=False)
     data = serializers.ListField(required=False)

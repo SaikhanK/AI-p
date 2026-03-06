@@ -13,7 +13,7 @@ export type CombiendFilter = {
 export const combiendfilter: CombiendFilter = {
     product: [{
         key: 'product_category',
-        choices: ['true', 'false']
+        choices: []
     },
     {
         key: 'product_brand',

@@ -29,8 +29,6 @@ export class ProductComponent {
                 next: res => {
                     this.products = res.data;
                     this.categories = res.category;
-
-                    console.log(this.products);
                 },
                 error: err => console.error(err)
             });

@@ -7,6 +7,7 @@ from .serializers import ProductSerializer, ProductImageSerializer
 from .paramter import QueryParameter
 from .services.querying import generate_dataframe
 from .services.category_service import get_categories
+from .services.brand_service import get_brands
 import pandas as pd
 
 class ProductView(GenericViewSet):
@@ -14,12 +15,14 @@ class ProductView(GenericViewSet):
     def getProducts(self, request: Request) -> Response:
         serializer_class = ProductSerializer
         categories = get_categories()
+        brands = get_brands()
         data = QueryParameter.model_validate(dict(request.query_params.items()))
         df = generate_dataframe(data)
         records = df.to_dict(orient="records")
         serializer_data = {
 
             "category": categories,
+            "brand": brands,
             "data": records
         }
         serializer = serializer_class(data = serializer_data)

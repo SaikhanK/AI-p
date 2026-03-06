@@ -1,14 +1,16 @@
 <div class="filter-container">
-    @for (filter of availableFilters; track filter.key) {
-      <mat-form-field appearance="outline">
-        <mat-label>{{ filter.key }}</mat-label>
-        
-        <mat-select (selectionChange)="onFilterChange(filter.key, $event.value)">
-          @for (choice of filter.choices; track choice) {
-            <mat-option [value]="choice">{{ choice }}</mat-option>
-          }
-        </mat-select>
-        
-      </mat-form-field>
-    }
+  <div *ngFor="let filter of availableFilters">
+
+    <mat-form-field>
+      <mat-label>{{ filter.key }}</mat-label>
+  
+      <mat-select (selectionChange)="onFilterSelect(filter.key, $event.value)">
+        <mat-option *ngFor="let choice of filter.choices" [value]="choice">
+          {{ choice }}
+        </mat-option>
+      </mat-select>
+  
+    </mat-form-field>
+  
+  </div>
   </div>
