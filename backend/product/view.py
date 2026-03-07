@@ -8,6 +8,7 @@ from .paramter import QueryParameter
 from .services.querying import generate_dataframe
 from .services.category_service import get_categories
 from .services.brand_service import get_brands
+from .services.response_service import generate_response
 import pandas as pd
 
 class ProductView(GenericViewSet):
@@ -19,15 +20,7 @@ class ProductView(GenericViewSet):
         data = QueryParameter.model_validate(dict(request.query_params.items()))
         df = generate_dataframe(data)
         records = df.to_dict(orient="records")
-        serializer_data = {
-
-            "category": categories,
-            "brand": brands,
-            "data": records
-        }
-        serializer = serializer_class(data = serializer_data)
-        serializer.is_valid(raise_exception=True)
-        return Response(serializer.data)
+        return generate_response(serializer_class, records, brands, categories)
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()

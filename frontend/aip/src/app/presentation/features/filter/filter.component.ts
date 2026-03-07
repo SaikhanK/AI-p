@@ -50,7 +50,6 @@ export class FilterComponent{
       })
   
   }
-
   onFilterSelect(key: string, value: any) {
     this.store.dispatch(setFilter({ key, value }));
     console.log(`Store Update: ${key} = ${value}`);
