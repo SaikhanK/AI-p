@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <header class="navbar">
   <div class="logo">
-    <a routerLink="/">MyApp</a>
+    <a routerLink="/">SHOP.IO</a>
   </div>
 
   <nav class="nav-links">
@@ -17,25 +16,23 @@
 </header>
 
 <body>
-
   <div class="layout-container">
-
-    <!-- Sidebar links -->
     <aside class="sidebar">
+      <div class="sidebar-header">
+        <h3>Filter</h3>
+      </div>
       <filter></filter>
     </aside>
 
-    <!-- Main Content -->
     <main class="content">
       <router-outlet></router-outlet>
     </main>
-
   </div>
-
 </body>
 
-<footer>
-  © 2025 Meine Anwendung – Erstellt mit ❤️ in Angular & Django
+<footer class="main-footer">
+  <div class="footer-content">
+    © 2026 SHOP.IO – Design mit ❤️ und Angular
+  </div>
 </footer>
-
 </html>

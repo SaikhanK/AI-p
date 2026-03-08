@@ -1,2 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+/* Globale Styles und Material Theme */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  /* Farbpalette */
+  --primary: #4f46e5;       /* Indigo */
+  --primary-hover: #4338ca;
+  --accent: #f59e0b;        /* Amber */
+  --bg-body: #f8fafc;       /* Slate 50 */
+  --bg-card: #ffffff;
+  --text-main: #0f172a;     /* Slate 900 */
+  --text-muted: #64748b;    /* Slate 500 */
+  --border-color: #e2e8f0;  /* Slate 200 */
+  
+  /* Schatten */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* Scrollbar Verschönerung */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Globale Utility Klassen */
+.full-width {
+  width: 100%;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}

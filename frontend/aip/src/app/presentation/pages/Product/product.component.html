@@ -1,19 +1,23 @@
-<html>
-<h1>test123</h1>
+<div class="product-page-header">
+    <h1>Alle Produkte</h1>
+    <p>Entdecke unsere neueste Auswahl an Hardware.</p>
+</div>
 
-<body>
-    <div class="product-list">
-        <div class="product-card" *ngFor="let product of products">
-            <h2 class="product-title">
-                {{ product.title }}
-            </h2>
-
-            <p class="product-price">
-                {{ product.price | number:'1.2-2' }}€
-            </p>
-            <a [routerLink]="['/productdetail', product.id]">View</a>
+<div class="product-grid">
+    <div class="product-card" *ngFor="let product of products">
+        <div class="product-badge">Neu</div>
+        <div class="product-image-placeholder">
+            <span class="material-icons">devices</span>
+        </div>
+        
+        <div class="product-info">
+            <h2 class="product-title">{{ product.title }}</h2>
+            <div class="product-meta">
+                <span class="product-price">{{ product.price | number:'1.2-2' }}€</span>
+                <a [routerLink]="['/productdetail', product.id]" class="view-button">
+                    Details
+                </a>
+            </div>
         </div>
     </div>
-</body>
-
-</html>
+</div>
