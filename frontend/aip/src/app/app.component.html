@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="de">
 <header class="navbar">
   <div class="logo">
     <a routerLink="/">SHOP.IO</a>
@@ -15,24 +13,21 @@
   </nav>
 </header>
 
-<body>
-  <div class="layout-container">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h3>Filter</h3>
-      </div>
-      <filter></filter>
-    </aside>
+<div class="layout-container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3>Filter</h3>
+    </div>
+    <filter></filter>
+  </aside>
 
-    <main class="content">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
-</body>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
 
 <footer class="main-footer">
   <div class="footer-content">
     © 2026 SHOP.IO – Design mit ❤️ und Angular
   </div>
 </footer>
-</html>

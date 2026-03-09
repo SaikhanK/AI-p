@@ -1,23 +1,34 @@
 <div class="product-page-header">
     <h1>Alle Produkte</h1>
-    <p>Entdecke unsere neueste Auswahl an Hardware.</p>
+    <div class="filter-bar">
+        <button (click)="setFilter('product_category', 'Smartphone')">Smartphones</button>
+        <button (click)="setFilter('product_category', 'Laptop')">Laptops</button>
+        <button (click)="setFilter('product_category', '')">Alle</button>
+    </div>
 </div>
 
-<div class="product-grid">
-    <div class="product-card" *ngFor="let product of products">
-        <div class="product-badge">Neu</div>
-        <div class="product-image-placeholder">
-            <span class="material-icons">devices</span>
+<div class="product-grid" *ngIf="products$ | async as response; else loading">
+    
+    <div class="product-card" *ngFor="let product of response.data">
+        <div class="product-image-container">
+            <div class="product-badge">Neu</div>
+            <span class="material-icons" style="font-size: 64px;">devices</span>
         </div>
         
         <div class="product-info">
             <h2 class="product-title">{{ product.title }}</h2>
-            <div class="product-meta">
+            <div class="product-footer">
                 <span class="product-price">{{ product.price | number:'1.2-2' }}€</span>
-                <a [routerLink]="['/productdetail', product.id]" class="view-button">
+                <a [routerLink]="['/productdetail', product.id]" class="details-btn">
                     Details
                 </a>
             </div>
         </div>
     </div>
+
+    <div *ngIf="response.data?.length === 0">Keine Produkte gefunden.</div>
 </div>
+
+<ng-template #loading>
+    <div class="loader">Lade Produkte...</div>
+</ng-template>
