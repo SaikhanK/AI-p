@@ -1,11 +1,27 @@
 .filter-list {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
   gap: 8px;
 }
 
 .full-width {
   width: 100%;
+}
+
+
+.reset-button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.reset-button:hover {
+  background-color: #3a33b0;
 }
 
 /* Material Design Overrides für einen "sleek" Look */
@@ -26,3 +42,4 @@
     border-color: #e2e8f0 !important;
   }
 }
+

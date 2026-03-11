@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { setFilter } from "../../../business-domain/filter/store/actions/filter.actions";
+import { clearFilters, setFilter } from "../../../business-domain/filter/store/actions/filter.actions";
 
 
 @Component({
@@ -53,6 +53,11 @@ export class FilterComponent{
   onFilterSelect(key: string, value: any) {
     this.store.dispatch(setFilter({ key, value }));
     console.log(`Store Update: ${key} = ${value}`);
+  }
+
+  onResetFilter() {
+    this.store.dispatch(clearFilters());
+    this.availableFilters.forEach(filter => filter.value = undefined);
   }
 
 

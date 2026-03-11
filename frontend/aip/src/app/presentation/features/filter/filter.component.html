@@ -1,8 +1,12 @@
 <div class="filter-list">
+  <button class="reset-button" (click)="onResetFilter()">Reset Filters</button>
+</div>
+
+<div class="filter-list">
   <div class="filter-item" *ngFor="let filter of availableFilters">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>{{ filter.key | titlecase }}</mat-label>
-      <mat-select (selectionChange)="onFilterSelect(filter.key, $event.value)">
+      <mat-select [(value)]="filter.value" (selectionChange)="onFilterSelect(filter.key, $event.value)">
         <mat-option *ngFor="let choice of filter.choices" [value]="choice">
           {{ choice }}
         </mat-option>
