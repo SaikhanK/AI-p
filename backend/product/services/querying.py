@@ -9,17 +9,17 @@ def generate_dataframe(data: QueryParameter)-> pd.DataFrame:
 
 
 def get_query_set(data: QueryParameter):
-    if data.category:
-        query_set = Product.objects.filter(category__name=data.category)
+    if data.product_category:
+        query_set = Product.objects.filter(category__name=data.product_category)
     else:
         query_set = Product.objects.all()
-    if data.max_price:
-        query_set = query_set.filter(price__lte=data.max_price)
-    if data.min_price:
-        query_set = query_set.filter(price__gte=data.max_price)
-    if data.attribute:
-        for key, value in data.attribute.items():
-            query_set = query_set.filter(key = value)
+    # if data.max_price:
+    #     query_set = query_set.filter(price__lte=data.max_price)
+    # if data.min_price:
+    #     query_set = query_set.filter(price__gte=data.max_price)
+    # if data.attribute:
+    #     for key, value in data.attribute.items():
+    #         query_set = query_set.filter(key = value)
     return query_set
 
 

@@ -7,8 +7,8 @@ class QueryParameter(BaseModel):
     search: Optional[str] = None
     sort_by: str = "id"
     order: str = "asc"
-    category: Optional[str] = None
-    attribute: Dict[str, str] = Field(default_factory=dict)
-    brand: Optional[str] = None
+    product_category: Optional[str] = None
+    product_attribute: Dict[str, str] = Field(default_factory=dict)
+    product_brand: Optional[str] = None
     min_price: Optional[float] = None
     max_price: Optional[float] = None

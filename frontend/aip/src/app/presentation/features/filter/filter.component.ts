@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { Store } from '@ngrx/store';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { StoreFilter, StoreState } from "../../../data-domain/store.model";
 import { selectFilters } from "../../../business-domain/filter/store/selectors/filter.selector";
 import { Observable } from "rxjs";
@@ -48,8 +48,8 @@ export class FilterComponent{
           }
         })
       })
-  
   }
+
   onFilterSelect(key: string, value: any) {
     this.store.dispatch(setFilter({ key, value }));
     console.log(`Store Update: ${key} = ${value}`);
