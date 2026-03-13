@@ -3,14 +3,22 @@ Django==5.2.1
 djangorestframework==3.16.0
 drf-yasg==1.21.10
 inflection==0.5.1
-packaging==25.0
+# Geändert: Version 24.2 ist kompatibel mit LangChain und drf-yasg
+packaging==24.2
 pytz==2025.2
 PyYAML==6.0.2
 sqlparse==0.5.3
 uritemplate==4.2.0
 psycopg[binary]>=3.1
-django-cors-headers >= 4.0,<5.0
+django-cors-headers>=4.0,<5.0
 Pillow>=10,<13
-pydantic==2.11.7
+pydantic>=2.10,<3.0
 pandas==2.2.1
 
+# LangChain Stack - Versionen aufeinander abgestimmt
+langchain==0.3.0
+langchain-community==0.3.0
+langchain-core==0.3.0
+langchain-groq==0.2.0
+langchain-openai==0.2.0
+python-dotenv
