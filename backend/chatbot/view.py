@@ -8,6 +8,7 @@ from langchain_core.tools import tool
 from rest_framework.response import Response
 from chatbot.services.search import search_hardware_db
 from rest_framework.viewsets import GenericViewSet
+from parameter import QueryParameter
 
 
 @tool
@@ -44,8 +45,11 @@ except Exception as e:
     print(f"Fehler bei der Agent-Erstellung: {e}")
 
 class ModelView(GenericViewSet):
+
     def chat_with_agent(self, request):
-        user_input = "macbook"
+        data = QueryParameter.model_validate(dict(request.query_params.items()))
+        if data.chatbot_query:
+            user_input = data.chatbot_query
         try:
             response = agent_executor.invoke({
                 "input": user_input,
