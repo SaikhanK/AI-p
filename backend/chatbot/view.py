@@ -20,7 +20,21 @@ def search_hardware_tool(query: str):
     """
     return search_hardware_db(query)
 
-tools = [search_hardware_tool]
+tools = [search_hardware_tool,
+         {
+        "type": "function",
+        "function": {
+            "name": "get_product_data",
+            "description": "Holt aktuelle Preise und Lagerbestand aus der DB",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "product_name": {"type": "string", "description": "Name des Produkts"},
+                },
+                "required": ["product_name"],
+            },
+        },
+    }]
 
 llm = ChatGroq(
     temperature=0, 
