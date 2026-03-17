@@ -1,5 +1,5 @@
 from django.db import models
-from ..product.models import Product
+from product.models import Product
 
 class Conversation(models.Model):
     session_id = models.CharField(max_length=255)

@@ -6,9 +6,9 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
 from rest_framework.response import Response
-from chatbot.services.search import search_hardware_db
+from chatbot.services.search import search_hardware_db, extract_data
 from rest_framework.viewsets import GenericViewSet
-from parameter import QueryParameter
+from chatbot.parameter import QueryParameter
 
 
 @tool
@@ -20,21 +20,7 @@ def search_hardware_tool(query: str):
     """
     return search_hardware_db(query)
 
-tools = [search_hardware_tool,
-         {
-        "type": "function",
-        "function": {
-            "name": "get_product_data",
-            "description": "Holt aktuelle Preise und Lagerbestand aus der DB",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "product_name": {"type": "string", "description": "Name des Produkts"},
-                },
-                "required": ["product_name"],
-            },
-        },
-    }]
+tools = [search_hardware_tool]
 
 llm = ChatGroq(
     temperature=0, 
@@ -61,13 +47,20 @@ except Exception as e:
 class ModelView(GenericViewSet):
 
     def chat_with_agent(self, request):
-        data = QueryParameter.model_validate(dict(request.query_params.items()))
-        if data.chatbot_query:
-            user_input = data.chatbot_query
+        user_input = QueryParameter.model_validate(dict(request.query_params.items()))
+        
+        extracted_json = extract_data(user_input, llm)
+        
+        input_for_agent = f"""
+        User-Anfrage: {user_input}
+        Extrahierte Daten: {extracted_json}
+        Bitte suche passende Produkte und erstelle ein Angebot.
+        """
+        
         try:
             response = agent_executor.invoke({
-                "input": user_input,
-                "chat_history": []
+                "input": input_for_agent,
+                "chat_history": [] 
             })            
             return Response({"output": response["output"]})
         
