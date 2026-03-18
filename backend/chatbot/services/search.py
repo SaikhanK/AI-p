@@ -1,6 +1,21 @@
 from product.models import Product
 from django.db.models import Q
 
+SYSTEM_PROMPT = """
+Du bist ein Daten-Extraktor für einen Hardware-Shop. Deine Aufgabe ist es, Kundenanfragen zu analysieren und strukturierte Daten im JSON-Format zurückzugeben.
+
+Extrahiere folgende Felder:
+- product_category: Die Art des Produkts (z.B. Laptop, Grafikkarte, CPU).
+- amount: Die gewünschte Anzahl als Ganzzahl (Default: 1).
+- price_limit: Das maximale Budget pro Stück, falls erwähnt (sonst null).
+- product_attributes: Ein Dictionary mit technischen Details (z.B. {"ram": "16GB", "storage": "512GB"}).
+
+Regeln:
+1. Antworte NUR mit dem JSON-Objekt.
+2. Wenn Informationen fehlen, setze den Wert auf null.
+3. Erfinde keine Daten, die nicht im Text stehen.
+"""
+
 def search_hardware_db(query: str, max_price: float = None):
     results = Product.objects.filter(
          Q(title__icontains=query)
@@ -18,13 +33,12 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 def extract_data(text_content, llm_instance):
     llm_json = llm_instance.bind(response_format={"type": "json_object"})
-    
-    system_prompt = "Analysiere den Text und Extrahiere schlüssel Daten als JSON. Antworte NUR im JSON-Format."
-    
+
     messages = [
-        SystemMessage(content=system_prompt),
+        SystemMessage(content=SYSTEM_PROMPT),
         HumanMessage(content=f"Text: {text_content}")
     ]
     
     response = llm_json.invoke(messages)
+    raise ValueError(response.content)
     return response.content

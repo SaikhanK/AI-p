@@ -48,7 +48,6 @@ class ModelView(GenericViewSet):
 
     def chat_with_agent(self, request):
         user_input = QueryParameter.model_validate(dict(request.query_params.items()))
-        
         extracted_json = extract_data(user_input, llm)
         
         input_for_agent = f"""
