@@ -24,7 +24,7 @@ tools = [search_hardware_tool]
 
 llm = ChatGroq(
     temperature=0, 
-    groq_api_key="-", 
+    groq_api_key="", 
     model_name="llama-3.1-8b-instant"
 )
 
@@ -48,7 +48,8 @@ class ModelView(GenericViewSet):
 
     def chat_with_agent(self, request):
         user_input = QueryParameter.model_validate(dict(request.query_params.items()))
-        extracted_json = extract_data(user_input, llm)
+        input = "ich suche 6 macbooks mit 16 gb ram"
+        extracted_json = extract_data(input, llm)
         
         input_for_agent = f"""
         User-Anfrage: {user_input}

@@ -8,7 +8,7 @@ Extrahiere folgende Felder:
 - product_category: Die Art des Produkts (z.B. Laptop, Grafikkarte, CPU).
 - amount: Die gewünschte Anzahl als Ganzzahl (Default: 1).
 - price_limit: Das maximale Budget pro Stück, falls erwähnt (sonst null).
-- product_attributes: Ein Dictionary mit technischen Details (z.B. {"ram": "16GB", "storage": "512GB"}).
+- product_attributes: Ein Dictionary mit technischen Details (z.B. {"ram": "16GB", "storage": "512GB", "color": "Black", "brand": "Apple"}).
 
 Regeln:
 1. Antworte NUR mit dem JSON-Objekt.
