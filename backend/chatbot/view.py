@@ -6,7 +6,7 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
 from rest_framework.response import Response
-from chatbot.services.search import search_hardware_db, extract_data
+from chatbot.services.search import search_hardware_db, extract_data, search_hardware
 from rest_framework.viewsets import GenericViewSet
 from chatbot.parameter import QueryParameter
 
@@ -50,6 +50,7 @@ class ModelView(GenericViewSet):
         user_input = QueryParameter.model_validate(dict(request.query_params.items()))
         input = "ich suche 6 macbooks mit 16 gb ram"
         extracted_json = extract_data(input, llm)
+        results = search_hardware(extracted_json)
         
         input_for_agent = f"""
         User-Anfrage: {user_input}
