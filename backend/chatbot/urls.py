@@ -5,5 +5,5 @@ from django.conf.urls.static import static
 from .view import ModelView
 
 urlpatterns = [
-    path("llm/", ModelView.as_view({'get': 'chat_with_agent'}), name="llm")
+    path("llm/", ModelView.as_view({'get': 'chat'}), name="llm")
 ]

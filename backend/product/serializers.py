@@ -17,3 +17,12 @@ class ProductSerializer(serializers.Serializer):
     class Meta:
         add_custom_attributes = True
         add_grouping_fields = False
+
+class ProductChatSerializer(serializers.ModelSerializer):
+    # Wir holen uns nur den Namen der Kategorie statt des ganzen Objekts
+    category_name = serializers.ReadOnlyField(source='category.name')
+
+    class Meta:
+        model = Product
+        # Nur die Felder, die du für den Einkaufswagen/Frontend wirklich brauchst
+        fields = ["id", "title", "price", "category_name"]

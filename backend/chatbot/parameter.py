@@ -1,6 +1,12 @@
 from pydantic import BaseModel
 from typing import Optional
+from typing import List
+
+class ChatMessage(BaseModel):
+    role: str
+    content: str
 
 class QueryParameter(BaseModel):
-    chatbot_query: Optional[str] = None
+    user_input: Optional[str] = None
+    history: Optional[List[ChatMessage]] = []
 
