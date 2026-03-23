@@ -1,0 +1,100 @@
+<!-- Chatbot Toggle Button -->
+<button class="chat-toggle-btn" (click)="toggleChat()" [class.open]="isOpen">
+    <span class="chat-icon" *ngIf="!isOpen">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+    </span>
+    <span class="close-icon" *ngIf="isOpen">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+    </span>
+    <span class="unread-dot" *ngIf="!isOpen && hasUnread"></span>
+</button>
+
+<!-- Chat Window -->
+<div class="chat-window" [class.visible]="isOpen">
+    <div class="chat-header">
+        <div class="header-info">
+            <div class="avatar-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M9 9a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1m6 0a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1z"/>
+                </svg>
+            </div>
+            <div>
+                <span class="header-title">Produkt-Assistent</span>
+                <span class="header-status">Online</span>
+            </div>
+        </div>
+        <button class="header-close-btn" (click)="toggleChat()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="chat-messages" #messageContainer>
+        <div *ngFor="let msg of messages" class="message-wrapper" [class.user-wrapper]="msg.role === 'user'">
+            
+            <!-- Bot Message -->
+            <ng-container *ngIf="msg.role === 'bot'">
+                <div class="bot-avatar-small">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M9 9a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1m6 0a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1z"/>
+                    </svg>
+                </div>
+                <div class="message bot-message">
+                    <p>{{ msg.text }}</p>
+                    <!-- Recommended Products -->
+                    <div class="recommended-products" *ngIf="msg.products && msg.products.length > 0">
+                        <p class="rec-label">Empfohlene Produkte:</p>
+                        <div class="rec-product" *ngFor="let product of msg.products">
+                            <span class="rec-product-title">{{ product.title }}</span>
+                            <div class="rec-product-footer">
+                                <span class="rec-product-price">{{ product.price | number:'1.2-2' }}€</span>
+                                <a [routerLink]="['/productdetail', product.id]" class="rec-product-link" (click)="toggleChat()">
+                                    Ansehen →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- User Message -->
+            <div class="message user-message" *ngIf="msg.role === 'user'">
+                <p>{{ msg.text }}</p>
+            </div>
+        </div>
+
+        <!-- Typing indicator -->
+        <div class="message-wrapper" *ngIf="isLoading">
+            <div class="bot-avatar-small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M9 9a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1m6 0a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1z"/>
+                </svg>
+            </div>
+            <div class="message bot-message typing-indicator">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-input-area">
+        <input
+            #inputField
+            type="text"
+            class="chat-input"
+            placeholder="Wonach suchst du?"
+            [(ngModel)]="inputText"
+            (keyup.enter)="sendMessage()"
+            [disabled]="isLoading"
+        />
+        <button class="send-btn" (click)="sendMessage()" [disabled]="isLoading || !inputText.trim()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+        </button>
+    </div>
+</div>

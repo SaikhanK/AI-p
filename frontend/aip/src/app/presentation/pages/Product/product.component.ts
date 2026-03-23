@@ -6,11 +6,12 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { switchMap, tap } from "rxjs/operators";
 import { StoreFilter, StoreState } from "../../../data-domain/store.model";
 import { Store } from '@ngrx/store';
+import { ChatbotWidgetComponent } from "../../features/chatbot-widget/chatbot-widget.component";
 
 @Component({
     selector: 'app-product',
     standalone: true,
-    imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ChatbotWidgetComponent],
     templateUrl: './product.component.html',
     styleUrl: './product.component.css',
 })
