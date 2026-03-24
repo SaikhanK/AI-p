@@ -7,6 +7,11 @@ class ProductImageSerializer(serializers.ModelSerializer):
         model = ProductImage
         fields = ["image"]
 
+class ProductDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ["title", "price"]
+
 class ProductSerializer(serializers.Serializer):
     category = serializers.ListField(required=False)
     brand = serializers.ListField(required=False)

@@ -14,7 +14,7 @@ CATEGORY_SYNONYMS = {
     "notebooks": "laptops",
     "rechner": "pc",
     "computer": "pc",
-    "grafikkarte": "gpu",
+    "grafikkarte": "grafikkarte",
     "prozessor": "cpu",
     "hauptspeicher": "ram",
     "festplatte": "ssd",

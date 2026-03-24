@@ -6,9 +6,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 router = DefaultRouter()
-#router.register(r"product", ProductViewSet, basename="products")
+router.register(r"products", ProductViewSet, basename="products")
 router.register(r"image", ProductImageViewSet, basename="images")
-# router.register(r"test", TestViewSet.as_view(), basename="test_api")
 
 urlpatterns = [
     path('', include(router.urls)),

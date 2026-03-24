@@ -1,10 +1,5 @@
 <div class="product-page-header">
     <h1>Alle Produkte</h1>
-    <div class="filter-bar">
-        <button (click)="setFilter('product_category', 'Smartphone')">Smartphones</button>
-        <button (click)="setFilter('product_category', 'Laptop')">Laptops</button>
-        <button (click)="setFilter('product_category', '')">Alle</button>
-    </div>
 </div>
 
 <div class="product-grid" *ngIf="products$ | async as response; else loading">
