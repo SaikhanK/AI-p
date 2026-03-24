@@ -1,30 +1,73 @@
-<div class="product-page-header">
-    <h1>Alle Produkte</h1>
-</div>
+<div class="page-shell">
 
-<div class="product-grid" *ngIf="products$ | async as response; else loading">
-    
-    <div class="product-card" *ngFor="let product of response.data">
-        <div class="product-image-container">
-            <div class="product-badge">Neu</div>
-            <span class="material-icons" style="font-size: 64px;">devices</span>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="header-text">
+            <h1 class="page-title">Alle Produkte</h1>
+            <p class="page-subtitle">Entdecke unsere aktuelle Auswahl</p>
         </div>
-        
-        <div class="product-info">
-            <h2 class="product-title">{{ product.title }}</h2>
-            <div class="product-footer">
-                <span class="product-price">{{ product.price | number:'1.2-2' }}€</span>
-                <a [routerLink]="['/productdetail', product.id]" class="details-btn">
-                    Details
-                </a>
-            </div>
+        <div class="filter-bar">
+            <button class="filter-btn" (click)="setFilter('product_category', '')">Alle</button>
+            <button class="filter-btn" (click)="setFilter('product_category', 'Smartphone')">Smartphones</button>
+            <button class="filter-btn" (click)="setFilter('product_category', 'Laptop')">Laptops</button>
         </div>
     </div>
 
-    <div *ngIf="response.data?.length === 0">Keine Produkte gefunden.</div>
+    <!-- Grid -->
+    <div class="product-grid" *ngIf="products$ | async as response; else loading">
+
+        <div class="product-card" *ngFor="let product of response.data; let i = index"
+            [style.animation-delay]="(i * 0.06) + 's'">
+        
+            <div class="card-image-area">
+                <div class="card-badge">Neu</div>
+                <div class="card-icon-wrap">
+                    <span class="material-icons">devices</span>
+                </div>
+                <div class="card-shine"></div>
+            </div>
+
+            <div class="card-body">
+                <h2 class="card-title">{{ product.title }}</h2>
+                <div class="card-footer">
+                    <span class="card-price">{{ product.price | number:'1.2-2' }}<span class="currency">€</span></span>
+                    <a [routerLink]="['/productdetail', product.id]" class="card-link">
+                        Details
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                    </div>
+                    </div>
+                    </div>
+
+        <div class="empty-state" *ngIf="response.data?.length === 0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <p>Keine Produkte gefunden.</p>
+        </div>
+        </div>
+
+    <!-- Skeleton Loading -->
+    <ng-template #loading>
+        <div class="product-grid">
+            <div class="product-card skeleton-card" *ngFor="let s of [1,2,3,4,5,6]" [style.animation-delay]="(s * 0.05) + 's'">
+                <div class="card-image-area skeleton-img"></div>
+                <div class="card-body">
+                    <div class="skeleton-line wide"></div>
+                    <div class="card-footer" style="margin-top: 20px;">
+                        <div class="skeleton-line short"></div>
+                        <div class="skeleton-line btn-skel"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </ng-template>
 </div>
 
-<ng-template #loading>
-    <div class="loader">Lade Produkte...</div>
-</ng-template>
 <app-chatbot-widget />

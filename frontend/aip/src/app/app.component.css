@@ -1,105 +1,165 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* ── Variables ──────────────────────────────────────────────── */
 :root {
-    --primary: #4f46e5;
-    --primary-dark: #3730a3;
-    --bg-body: #f1f5f9;
-    --bg-sidebar: #ffffff;
-    --text-on-primary: #ffffff;
-    --border-color: #e2e8f0;
+    --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --accent: #0f172a;
+        --bg-body: #f8fafc;
+        --bg-sidebar: #ffffff;
+        --border-color: #e2e8f0;
+        --text-on-primary: #ffffff;
+        --navbar-height: 64px;
 }
 
-/* Reset & Basis-Layout-Fix */
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     background-color: var(--bg-body);
     display: flex;
-    flex-direction: column; /* Stapelt Header, Body und Footer */
+    flex-direction: column;
 }
 
-/* NAVBAR */
+/* ── Navbar ─────────────────────────────────────────────────── */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary) !important;
+    background: var(--accent);
     padding: 0 2rem;
-    height: 70px;
-    min-height: 70px; /* Verhindert das Schrumpfen */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    height: var(--navbar-height);
+        min-height: var(--navbar-height);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        position: sticky;
+        top: 0;
 }
 
 .logo a {
-    color: var(--text-on-primary) !important;
+    color: #fff;
     text-decoration: none;
-    font-weight: 800;
-    font-size: 1.6rem;
-    letter-spacing: -1px;
+    font-family: 'DM Serif Display', serif;
+        font-size: 1.55rem;
+        letter-spacing: -0.02em;
+        font-weight: 400;
+    }
+    
+    .logo-dot {
+        color: var(--primary);
 }
 
 .nav-links {
     display: flex;
-    gap: 8px;
+    gap: 4px;
 }
 
 .nav-links a {
-    color: rgba(255, 255, 255, 0.85) !important;
+    display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 10px 18px;
+    font-weight: 500;
+        font-size: 0.875rem;
+        padding: 8px 16px;
     border-radius: 10px;
-    transition: all 0.2s ease;
+    transition: color 0.18s ease, background 0.18s ease;
+    }
+    
+    .nav-links a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
 }
 
 .nav-links a.active {
-    color: white !important;
-    background-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+        background: rgba(255, 255, 255, 0.14);
 }
 
-/* MIDDLE SECTION */
+/* ── Layout ─────────────────────────────────────────────────── */
 .layout-container {
     display: flex;
-    flex: 1; /* Nimmt den restlichen Platz zwischen Header und Footer ein */
+    flex: 1;
     width: 100%;
+    min-height: 0;
 }
 
+/* ── Sidebar ────────────────────────────────────────────────── */
 .sidebar {
-    width: 280px;
-    background-color: var(--bg-sidebar);
+    width: 260px;
+        min-width: 260px;
+        background: var(--bg-sidebar);
     border-right: 1px solid var(--border-color);
-    padding: 24px;
+    padding: 28px 20px;
     box-sizing: border-box;
+    display: flex;
+        flex-direction: column;
+        gap: 20px;
 }
 
-.sidebar-header h3 {
-    margin: 0 0 20px 0;
-    font-size: 0.8rem;
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
-    color: #64748b;
+    letter-spacing: 0.1em;
+        color: #94a3b8;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border-color);
 }
 
+/* ── Main Content ───────────────────────────────────────────── */
 .content {
     flex: 1;
     padding: 40px;
-    background-color: var(--bg-body);
+    background: var(--bg-body);
+        min-width: 0;
+        overflow-y: auto;
 }
 
-/* FOOTER - Jetzt korrekt platziert */
+/* ── Footer ─────────────────────────────────────────────────── */
 .main-footer {
-    background: white;
-    padding: 24px;
-    text-align: center;
+    background: var(--bg-sidebar);
+        padding: 18px 32px;
     border-top: 1px solid var(--border-color);
+    display: flex;
+        justify-content: center;
+    }
+    
+    .footer-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.8rem;
+        color: #94a3b8;
+    }
+    
+    .footer-logo {
+        font-family: 'DM Serif Display', serif;
+        font-size: 0.95rem;
     color: #64748b;
-    width: 100%;
+    letter-spacing: -0.01em;
 }
 
-/* Responsive */
+.footer-sep {
+    color: #cbd5e1;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .layout-container { flex-direction: column; }
-    .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); }
+        .sidebar {
+            width: 100%;
+            min-width: unset;
+            border-right: none;
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px;
+        }
+    
+        .content {
+            padding: 24px 16px;
+        }
 }

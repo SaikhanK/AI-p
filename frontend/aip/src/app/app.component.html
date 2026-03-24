@@ -1,14 +1,25 @@
 <header class="navbar">
   <div class="logo">
-    <a routerLink="/">SHOP.IO</a>
+    <a routerLink="/">SHOP<span class="logo-dot">.</span>IO</a>
   </div>
 
   <nav class="nav-links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
       Home
     </a>
     <a routerLink="/product" routerLinkActive="active">
-      Products
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+      Produkte
     </a>
   </nav>
 </header>
@@ -16,7 +27,11 @@
 <div class="layout-container">
   <aside class="sidebar">
     <div class="sidebar-header">
-      <h3>Filter</h3>
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+      </svg>
+      <span>Filter</span>
     </div>
     <filter></filter>
   </aside>
@@ -28,6 +43,8 @@
 
 <footer class="main-footer">
   <div class="footer-content">
-    © 2026 SHOP.IO – Design mit ❤️ und Angular
+    <span class="footer-logo">SHOP<span class="logo-dot">.</span>IO</span>
+    <span class="footer-sep">·</span>
+    <span>© 2026 – Designed with ❤️ &amp; Angular</span>
   </div>
 </footer>
